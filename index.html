@@ -378,18 +378,164 @@
   }
   .inline-with-field label { font-size: 12px; color: var(--muted); white-space: nowrap; }
 
+  /* ===== 4b WEITERE SERVICES (screen) ===== */
+  .weitereservices-row {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .weitereservices-row textarea {
+    width: 100%;
+    display: block;
+  }
+
   /* ===== PRINT STYLES ===== */
   @media print {
-    body { background: white; font-size: 11pt; }
-    #toolbar, #toolbar-hint, .no-print { display: none !important; }
-    #main { max-width: 100%; margin: 0; padding: 0; }
-    .section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12pt; }
-    .section-header { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .checkbox-item { border: 1px solid #ccc; }
-    .checkbox-item.checked { background: #e8ffe8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    input, textarea, select { border: 1px solid #999 !important; background: white !important; }
-    .form-header { box-shadow: none; border: 1px solid #ccc; }
-    .print-logo { display: block !important; }
+    @page {
+      size: A4;
+      margin: 10mm 10mm 12mm 10mm;
+    }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body {
+      background: white !important;
+      font-size: 9.5pt;
+      color: #000;
+    }
+
+    #toolbar, #toolbar-hint, .no-print, .hint { display: none !important; }
+
+    #main {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Jede Section auf neuer Seite verhindern außer Sektionen die zusammenpassen */
+    .section {
+      box-shadow: none !important;
+      border: 1px solid #bbb;
+      margin-bottom: 8pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Section 4 darf umbrechen (hat 4a/4b auf Seite 2, 4c auf Seite 3) */
+    #section-4 {
+      page-break-before: always;
+      break-before: always;
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    /* 4a+4b bleiben zusammen */
+    .hours-print-block {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* 4c Feiertage: immer neue Seite, aber bleibt in Section-4-Rahmen */
+    .holiday-print-block {
+      page-break-before: always;
+      break-before: always;
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    /* Section 5 beginnt auf neuer Seite */
+    #section-4 + .section {
+      page-break-before: always;
+      break-before: always;
+    }
+
+    .section-header {
+      background: #eef2ff !important;
+      border-bottom: 1px solid #bbb;
+      padding: 6pt 10pt;
+    }
+
+    .section-header h2 { font-size: 11pt; }
+    .section-num { width: 20pt !important; height: 20pt !important; font-size: 10pt !important; }
+
+    .section-body { padding: 8pt 10pt; }
+
+    .form-header {
+      box-shadow: none !important;
+      border: 1px solid #bbb;
+      padding: 10pt 12pt;
+      margin-bottom: 8pt;
+    }
+    .form-header h1 { font-size: 13pt; }
+    .form-header img { height: 44pt !important; }
+
+    /* Felder */
+    .field-row { margin-bottom: 6pt; gap: 8pt; }
+    .field-label { font-size: 9pt; width: 140pt; min-width: 140pt; max-width: 140pt; padding-top: 3pt; }
+
+    input, textarea, select {
+      border: 1px solid #999 !important;
+      background: white !important;
+      font-size: 9pt !important;
+      padding: 3pt 5pt !important;
+      min-height: 0 !important;
+    }
+
+    textarea { min-height: 22pt !important; }
+
+    /* Checkboxen */
+    .checkbox-grid { grid-template-columns: repeat(3, 1fr); gap: 3pt; }
+    .checkbox-item {
+      border: 1px solid #ccc !important;
+      padding: 3pt 6pt !important;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .checkbox-item.checked {
+      background: #e8ffe8 !important;
+      border-color: #6dcc8a !important;
+    }
+    .checkbox-section { margin-bottom: 6pt; }
+    .checkbox-section-label { font-size: 9.5pt; margin-bottom: 3pt; }
+
+    /* 4b Weitere Services: bleibt auf Seite 2 mit 4a */
+    .weitereservices-row {
+      page-break-before: avoid !important;
+      break-before: avoid !important;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 4pt 0 6pt !important;
+      margin: 0 !important;
+    }
+    .weitereservices-row textarea {
+      width: 100% !important;
+      min-height: 22pt !important;
+    }
+
+    /* ===== Öffnungszeiten-Tabelle ===== */
+    .hours-table { max-width: 100%; font-size: 8pt; }
+    .hours-table th { padding: 2pt 4pt; font-size: 8pt; }
+    .hours-table td { padding: 2pt 4pt; }
+    .hours-table input[type="text"] { font-size: 8pt !important; width: 60pt; }
+
+    /* Feiertags-Tabelle */
+    .holiday-table { font-size: 8pt; }
+    .holiday-table th { padding: 3pt 5pt; font-size: 8.5pt; }
+    .holiday-table td { padding: 2pt 4pt; }
+    .holiday-table input[type="text"] { font-size: 8pt !important; }
+    .holiday-table select { font-size: 8pt !important; }
+    .holiday-note { font-size: 7.5pt; margin-top: 4pt; }
+
+    /* Notices */
+    .notice { padding: 5pt 8pt; font-size: 8.5pt; }
+
+    /* Social media grid */
+    #f15b_fb, #f15b_ig, #f15b_li, #f15b_yt, #f15b_other { font-size: 8.5pt !important; }
   }
 
   .print-logo { display: none; }
@@ -437,6 +583,31 @@
     pointer-events: none;
   }
   #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ===== ÖFFNUNGSZEITEN TABLE ===== */
+  .hours-table { width: 100%; border-collapse: collapse; font-size: 13px; max-width: 480px; }
+  .hours-table th {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 12px;
+  }
+  .hours-table td {
+    border: 1px solid var(--border);
+    padding: 3px 6px;
+    vertical-align: middle;
+  }
+  .hours-table tr:hover td { background: #fafbff; }
+  .hours-table input[type="text"] {
+    border: none; background: transparent; padding: 4px 6px; width: 80px;
+  }
+  .hours-table input[type="text"]:focus {
+    background: white; border: 1.5px solid var(--accent); border-radius: 4px;
+  }
+  .hours-table input[type="text"].filled { background: #f0fff6; }
 
   /* ===== FEIERTAGE TABLE ===== */
   .holiday-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -665,7 +836,7 @@
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Standortadresse (falls sichtbar)</div></div>
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Standortadresse</div></div>
         <div class="field-input">
           <input type="text" id="f3d" placeholder="Straße, PLZ, Ort" oninput="handleInput(this)">
           <div class="hint">Leer lassen, wenn kein physischer Standort für Kunden sichtbar sein soll (reine Serviceanbieter).</div>
@@ -681,158 +852,120 @@
   </div>
 
   <!-- SECTION 4 -->
-  <div class="section">
+  <div class="section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Zeitmanagement &amp; Öffnungszeiten</h2>
     </div>
     <div class="section-body">
-      <div class="field-row">
-        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Reguläre Öffnungszeiten</div></div>
-        <div class="field-input">
-          <textarea id="f4a" placeholder="Mo–Fr: 08:00–18:00 Uhr&#10;Sa: 09:00–13:00 Uhr&#10;So: geschlossen" oninput="handleInput(this)" rows="4"></textarea>
+
+      <!-- 4a Wochentage -->
+      <div class="field-row hours-print-block" style="flex-direction:column;gap:6px;margin-bottom:16px">
+        <div class="field-label" style="max-width:100%;padding-top:0"><span class="letter">a.</span><div class="label-inner">Reguläre Öffnungszeiten</div></div>
+        <div class="field-input" style="width:100%">
+          <table class="hours-table">
+            <thead>
+              <tr>
+                <th style="width:110px">Tag</th>
+                <th>Von</th>
+                <th>Bis</th>
+                <th style="width:90px">Geschlossen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day-label">Montag</td>
+                <td><input type="text" id="h_mo_von" placeholder="08:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_mo_bis" placeholder="18:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_mo_closed" onchange="scheduleAutoSave()"><label for="h_mo_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Dienstag</td>
+                <td><input type="text" id="h_di_von" placeholder="08:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_di_bis" placeholder="18:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_di_closed" onchange="scheduleAutoSave()"><label for="h_di_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Mittwoch</td>
+                <td><input type="text" id="h_mi_von" placeholder="08:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_mi_bis" placeholder="18:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_mi_closed" onchange="scheduleAutoSave()"><label for="h_mi_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Donnerstag</td>
+                <td><input type="text" id="h_do_von" placeholder="08:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_do_bis" placeholder="18:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_do_closed" onchange="scheduleAutoSave()"><label for="h_do_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Freitag</td>
+                <td><input type="text" id="h_fr_von" placeholder="08:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_fr_bis" placeholder="18:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_fr_closed" onchange="scheduleAutoSave()"><label for="h_fr_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Samstag</td>
+                <td><input type="text" id="h_sa_von" placeholder="09:00" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_sa_bis" placeholder="13:00" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_sa_closed" onchange="scheduleAutoSave()"><label for="h_sa_closed"></label></div></td>
+              </tr>
+              <tr>
+                <td class="day-label">Sonntag</td>
+                <td><input type="text" id="h_so_von" placeholder="–" oninput="handleInput(this)"></td>
+                <td><input type="text" id="h_so_bis" placeholder="–" oninput="handleInput(this)"></td>
+                <td style="text-align:center"><div class="checkbox-item" style="justify-content:center;border:none;padding:4px" onclick="toggleCheck(this)"><input type="checkbox" id="h_so_closed" onchange="scheduleAutoSave()"><label for="h_so_closed"></label></div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
       </div>
 
-      <div class="field-row" style="flex-direction:column;gap:8px">
-        <div class="field-label" style="max-width:100%;padding-top:0"><span class="letter">b.</span> Öffnungszeiten an gesetzlichen Feiertagen</div>
+      <!-- 4b Weitere Services -->
+      <div class="weitereservices-row" style="margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px"><span class="letter" style="color:var(--accent)">b.</span> Weitere Services</div>
+        <textarea id="f4c" placeholder="z. B. Abholung nach Vereinbarung, 24h-Notdienst, Lieferung Mo–Sa" oninput="handleInput(this)" rows="2" style="width:100%;display:block"></textarea>
+      </div>
+
+      <!-- 4c Feiertage -->
+      <div class="field-row holiday-print-block" style="flex-direction:column;gap:6px;margin-bottom:16px">
+        <div class="field-label" style="max-width:100%;padding-top:0"><span class="letter">c.</span> Öffnungszeiten an gesetzlichen Feiertagen</div>
         <div class="field-input" style="width:100%">
           <table class="holiday-table">
             <thead>
               <tr>
                 <th>Feiertag</th>
-                <th>Datum 2025</th>
+                <th>Datum</th>
                 <th>Status</th>
-                <th>Öffnungszeiten (falls abweichend)</th>
+                <th>Abweichende Zeiten</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="day-label">Neujahr</td>
-                <td class="date-label">01.01.</td>
-                <td><select id="hol_01" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_01_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Heilige Drei Könige</td>
-                <td class="date-label">06.01. <span style="color:#f59e0b;font-size:10px">(nur BY/BW/ST)</span></td>
-                <td><select id="hol_02" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_02_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Karfreitag</td>
-                <td class="date-label">18.04.2025</td>
-                <td><select id="hol_03" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_03_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Ostersonntag</td>
-                <td class="date-label">20.04.2025</td>
-                <td><select id="hol_04" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_04_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Ostermontag</td>
-                <td class="date-label">21.04.2025</td>
-                <td><select id="hol_05" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_05_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Tag der Arbeit</td>
-                <td class="date-label">01.05.</td>
-                <td><select id="hol_06" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_06_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Christi Himmelfahrt</td>
-                <td class="date-label">29.05.2025</td>
-                <td><select id="hol_07" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_07_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Pfingstsonntag</td>
-                <td class="date-label">08.06.2025</td>
-                <td><select id="hol_08" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_08_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Pfingstmontag</td>
-                <td class="date-label">09.06.2025</td>
-                <td><select id="hol_09" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_09_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Fronleichnam</td>
-                <td class="date-label">19.06.2025 <span style="color:#f59e0b;font-size:10px">(BY/BW/HE/NW/RP/SL)</span></td>
-                <td><select id="hol_10" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_10_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Mariä Himmelfahrt</td>
-                <td class="date-label">15.08. <span style="color:#f59e0b;font-size:10px">(nur BY/SL)</span></td>
-                <td><select id="hol_11" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_11_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Tag der Deutschen Einheit</td>
-                <td class="date-label">03.10.</td>
-                <td><select id="hol_12" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_12_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Reformationstag</td>
-                <td class="date-label">31.10. <span style="color:#f59e0b;font-size:10px">(BB/HB/HH/MV/NI/SN/ST/SH/TH)</span></td>
-                <td><select id="hol_13" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_13_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Allerheiligen</td>
-                <td class="date-label">01.11. <span style="color:#f59e0b;font-size:10px">(BY/BW/NW/RP/SL)</span></td>
-                <td><select id="hol_14" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_14_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Buß- und Bettag</td>
-                <td class="date-label">19.11.2025 <span style="color:#f59e0b;font-size:10px">(nur SN)</span></td>
-                <td><select id="hol_15" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_15_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Heiligabend</td>
-                <td class="date-label">24.12.</td>
-                <td><select id="hol_16" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_16_time" placeholder="z. B. 08:00–12:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">1. Weihnachtstag</td>
-                <td class="date-label">25.12.</td>
-                <td><select id="hol_17" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_17_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">2. Weihnachtstag</td>
-                <td class="date-label">26.12.</td>
-                <td><select id="hol_18" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_18_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
-              <tr>
-                <td class="day-label">Silvester</td>
-                <td class="date-label">31.12.</td>
-                <td><select id="hol_19" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
-                <td><input type="text" id="hol_19_time" placeholder="z. B. 08:00–14:00 Uhr" oninput="handleInput(this)"></td>
-              </tr>
+              <tr><td class="day-label">Neujahr</td><td class="date-label">01.01.</td><td><select id="hol_01" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_01_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Hl. Drei Könige</td><td class="date-label">06.01. <span style="color:#f59e0b;font-size:10px">(BY/BW/ST)</span></td><td><select id="hol_02" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_02_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Karfreitag</td><td class="date-label">18.04.2025</td><td><select id="hol_03" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_03_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Ostersonntag</td><td class="date-label">20.04.2025</td><td><select id="hol_04" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_04_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Ostermontag</td><td class="date-label">21.04.2025</td><td><select id="hol_05" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_05_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Tag der Arbeit</td><td class="date-label">01.05.</td><td><select id="hol_06" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_06_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Christi Himmelfahrt</td><td class="date-label">29.05.2025</td><td><select id="hol_07" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_07_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Pfingstsonntag</td><td class="date-label">08.06.2025</td><td><select id="hol_08" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_08_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Pfingstmontag</td><td class="date-label">09.06.2025</td><td><select id="hol_09" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_09_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Fronleichnam</td><td class="date-label">19.06.2025 <span style="color:#f59e0b;font-size:10px">(BY/BW/HE…)</span></td><td><select id="hol_10" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_10_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Mariä Himmelfahrt</td><td class="date-label">15.08. <span style="color:#f59e0b;font-size:10px">(BY/SL)</span></td><td><select id="hol_11" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_11_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Tag d. Dt. Einheit</td><td class="date-label">03.10.</td><td><select id="hol_12" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_12_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Reformationstag</td><td class="date-label">31.10. <span style="color:#f59e0b;font-size:10px">(Nord/Ost)</span></td><td><select id="hol_13" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_13_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Allerheiligen</td><td class="date-label">01.11. <span style="color:#f59e0b;font-size:10px">(BY/BW…)</span></td><td><select id="hol_14" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_14_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Buß- und Bettag</td><td class="date-label">19.11.2025 <span style="color:#f59e0b;font-size:10px">(SN)</span></td><td><select id="hol_15" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_15_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Heiligabend</td><td class="date-label">24.12.</td><td><select id="hol_16" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_16_time" placeholder="z. B. 08:00–12:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">1. Weihnachtstag</td><td class="date-label">25.12.</td><td><select id="hol_17" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_17_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">2. Weihnachtstag</td><td class="date-label">26.12.</td><td><select id="hol_18" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_18_time" placeholder="z. B. 10:00–14:00" oninput="handleInput(this)"></td></tr>
+              <tr><td class="day-label">Silvester</td><td class="date-label">31.12.</td><td><select id="hol_19" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normal</option><option value="abweichend">Abweichend</option></select></td><td><input type="text" id="hol_19_time" placeholder="z. B. 08:00–14:00" oninput="handleInput(this)"></td></tr>
             </tbody>
           </table>
-          <div class="holiday-note">⚠ Länderspezifische Feiertage (orange markiert) bitte nur ausfüllen, wenn für Ihren Standort relevant. Google aktualisiert die Feiertage jährlich automatisch – diese Angaben überschreiben die automatischen Werte.</div>
+          <div class="holiday-note">⚠ Länderspezifische Feiertage (orange) nur ausfüllen wenn für Ihren Standort relevant.</div>
         </div>
       </div>
 
-      <div class="field-row">
-        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Weitere Services</div></div>
-        <div class="field-input">
-          <textarea id="f4c" placeholder="z. B. Abholung nach Vereinbarung, 24h-Notdienst, Lieferung Mo–Sa" oninput="handleInput(this)" rows="2"></textarea>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -1024,13 +1157,7 @@
     </div>
     <div class="section-body">
       <div class="field-row">
-        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Gründungsjahr</div></div>
-        <div class="field-input">
-          <input type="number" id="f10a" placeholder="z. B. 1998" min="1800" max="2025" oninput="handleInput(this)">
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Qualifikationen / Zertifikate</div></div>
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Qualifikationen / Zertifikate</div></div>
         <div class="field-input">
           <textarea id="f10b" placeholder="z. B. Meisterbetrieb, ISO 9001, TÜV-zertifiziert, DEKRA-geprüft" oninput="handleInput(this)" rows="2"></textarea>
         </div>
@@ -1074,6 +1201,16 @@
             <option value="extern">Extern vergeben: Agentur / Dienstleister antwortet</option>
           </select>
           <div class="hint">Regelmäßiges Antworten auf Bewertungen ist ein wichtiger Rankingfaktor bei Google.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Soll die Sichtwerk Agentur das Antworten auf Bewertungen übernehmen?</div></div>
+        <div class="field-input">
+          <select id="f11d" onchange="handleInput(this)">
+            <option value="">– Bitte wählen –</option>
+            <option value="ja">Ja, bitte von der Sichtwerkagentur übernehmen lassen</option>
+            <option value="nein">Nein, wir antworten selbst auf Bewertungen</option>
+          </select>
         </div>
       </div>
     </div>
@@ -1298,7 +1435,10 @@ const textFieldIds = [
   'f1a','f1b','f1c','f1d',
   'f2a','f2b','f2c','f2d',
   'f3a','f3b','f3c','f3d','f3e',
-  'f4a','f4c',
+  'f4c',
+  // Öffnungszeiten Wochentage
+  'h_mo_von','h_mo_bis','h_di_von','h_di_bis','h_mi_von','h_mi_bis',
+  'h_do_von','h_do_bis','h_fr_von','h_fr_bis','h_sa_von','h_sa_bis','h_so_von','h_so_bis',
   // Feiertage: Status-Selects + Zeitfelder
   'hol_01','hol_01_time','hol_02','hol_02_time','hol_03','hol_03_time',
   'hol_04','hol_04_time','hol_05','hol_05_time','hol_06','hol_06_time',
@@ -1312,8 +1452,8 @@ const textFieldIds = [
   'f7a',
   'f8a','f8b',
   'f9a','f9b',
-  'f10a','f10b','f10c',
-  'f11a','f11b_avg','f11c',
+  'f10b','f10c',
+  'f11a','f11b_avg','f11c','f11d',
   'f12a',
   'f13a',
   'f14a','f14b','f14c','f14d',
@@ -1322,6 +1462,7 @@ const textFieldIds = [
 ];
 
 const checkboxIds = [
+  'h_mo_closed','h_di_closed','h_mi_closed','h_do_closed','h_fr_closed','h_sa_closed','h_so_closed',
   'c5a1','c5a2','c5a3',
   'c5b1','c5b2','c5b3','c5b4',
   'c5c1','c5c2','c5c3','c5c4','c5c5',
