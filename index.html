@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="SEO-Onboarding Fragebogen – Google Unternehmensprofil | Sichtwerk Agentur">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CD;</text></svg>">
+<title>Google Unternehmensprofil – SEO-Onboarding & Analysefragebogen</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #4a9eff;
+    --accent2: #2ecc71;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+    --border: #d1d5db;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --warn: #f59e0b;
+    --required: #ef4444;
+    --section-bg: #f0f4ff;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ===== TOOLBAR ===== */
+  #toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  #toolbar .logo-area {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #toolbar .logo-area span {
+    color: var(--accent);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #2980d4; }
+  .btn-success { background: var(--accent2); color: white; }
+  .btn-success:hover { background: #27ae60; }
+  .btn-warn { background: var(--warn); color: white; }
+  .btn-warn:hover { background: #d97706; }
+  .btn-ghost { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.2); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+  .btn-danger { background: var(--required); color: white; }
+  .btn-danger:hover { background: #dc2626; }
+
+  /* ===== TOOLBAR DIVIDER ===== */
+  .toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 4px;
+  }
+
+  /* ===== TOOLBAR HINT BAR ===== */
+  #toolbar-hint {
+    background: #f0f4ff;
+    border-bottom: 1px solid #dbeafe;
+    padding: 6px 24px;
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr;
+    grid-template-rows: auto auto;
+    gap: 4px 28px;
+    font-size: 11.5px;
+    color: var(--muted);
+    align-items: center;
+  }
+  #toolbar-hint .hint-item:nth-child(4) {
+    grid-column: 1 / -1;
+    border-top: 1px solid #dbeafe;
+    padding-top: 5px;
+    margin-top: 1px;
+  }
+  #toolbar-hint .hint-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #toolbar-hint .hint-icon {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  /* ===== PROGRESS ===== */
+  #progress-bar-wrap {
+    background: rgba(255,255,255,0.12);
+    border-radius: 99px;
+    height: 6px;
+    width: 140px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  #progress-bar {
+    background: var(--accent2);
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.4s;
+    width: 0%;
+  }
+  #progress-label { font-size: 12px; color: rgba(255,255,255,0.8); white-space: nowrap; }
+
+  /* ===== AUTOSAVE STATUS ===== */
+  #save-status {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  /* ===== MAIN CONTAINER ===== */
+  #main {
+    max-width: 860px;
+    margin: 32px auto;
+    padding: 0 16px 60px;
+  }
+
+  /* ===== HEADER ===== */
+  .form-header {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .form-header .header-text { flex: 1; }
+  .form-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .form-header p { color: var(--muted); font-size: 13px; }
+  .form-header .badge {
+    background: var(--section-bg);
+    color: var(--accent);
+    border: 1px solid #c7d9f8;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .section-header {
+    background: var(--section-bg);
+    border-bottom: 1px solid #dbeafe;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-header .section-num {
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .section-body { padding: 20px 24px; }
+
+  /* ===== FIELD ROW ===== */
+  .field-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .field-label {
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+    padding-top: 8px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .field-label .letter {
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 22px;
+  }
+
+  .field-label .label-inner {
+    flex: 1;
+    line-height: 1.45;
+  }
+
+  .req {
+    display: inline;
+    color: var(--required);
+    font-size: 11px;
+    margin-left: 2px;
+  }
+
+  .field-input { flex: 1; }
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="url"],
+  input[type="number"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    background: white;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74,158,255,0.12);
+  }
+
+  input.filled, textarea.filled, select.filled {
+    border-color: var(--accent2);
+    background: #f0fff6;
+  }
+
+  textarea { resize: vertical; min-height: 72px; }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ===== CHECKBOX GRID ===== */
+  .checkbox-section { margin-bottom: 16px; }
+  .checkbox-section-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .checkbox-section-label .letter { color: var(--accent); font-weight: 700; }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 6px 16px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.12s;
+    background: white;
+  }
+
+  .checkbox-item:hover { border-color: var(--accent); background: var(--section-bg); }
+  .checkbox-item.checked { border-color: var(--accent2); background: #f0fff6; }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent2);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .checkbox-item label {
+    cursor: pointer;
+    font-size: 13px;
+    user-select: none;
+  }
+
+  /* ===== NOTICE BOX ===== */
+  .notice {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #92400e;
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  /* ===== INLINE LANG FIELD ===== */
+  .inline-with-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .inline-with-field label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body { background: white; font-size: 11pt; }
+    #toolbar, #toolbar-hint, .no-print { display: none !important; }
+    #main { max-width: 100%; margin: 0; padding: 0; }
+    .section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12pt; }
+    .section-header { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .checkbox-item { border: 1px solid #ccc; }
+    .checkbox-item.checked { background: #e8ffe8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    input, textarea, select { border: 1px solid #999 !important; background: white !important; }
+    .form-header { box-shadow: none; border: 1px solid #ccc; }
+    .print-logo { display: block !important; }
+  }
+
+  .print-logo { display: none; }
+
+  /* ===== MODAL (Import) ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .modal h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .modal textarea { font-family: monospace; font-size: 11px; min-height: 160px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 14px; justify-content: flex-end; }
+  .modal .btn { color: white; }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 300;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.25s;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ===== FEIERTAGE TABLE ===== */
+  .holiday-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .holiday-table th {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  .holiday-table td {
+    border: 1px solid var(--border);
+    padding: 4px 6px;
+    vertical-align: middle;
+  }
+  .holiday-table tr:hover td { background: #fafbff; }
+  .holiday-table input[type="text"] { border: none; background: transparent; padding: 4px 6px; }
+  .holiday-table input[type="text"]:focus { background: white; border: 1.5px solid var(--accent); border-radius: 4px; box-shadow: none; }
+  .holiday-table input[type="text"].filled { background: #f0fff6; }
+  .holiday-table .day-label { font-weight: 500; color: var(--text); padding: 6px 10px; white-space: nowrap; }
+  .holiday-table .date-label { color: var(--muted); font-size: 11px; padding: 6px 8px; white-space: nowrap; }
+  .holiday-table select { border: none; background: transparent; font-size: 12px; padding: 4px 2px; color: var(--text); }
+  .holiday-table select:focus { background: white; border: 1.5px solid var(--accent); border-radius: 4px; outline: none; }
+  .holiday-table select.filled { background: #f0fff6; }
+  .holiday-note { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* Responsive */
+  /* ===== TABLET ===== */
+  @media (max-width: 720px) {
+    #main { margin: 16px auto; padding: 0 10px 40px; }
+    .field-label { width: 180px; min-width: 180px; max-width: 180px; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 560px) {
+    #toolbar {
+      padding: 8px 12px;
+      gap: 6px;
+    }
+    #toolbar .logo-area img { height: 24px; }
+    #progress-bar-wrap { width: 80px; }
+    #save-status { display: none; }
+    .btn { padding: 6px 10px; font-size: 12px; gap: 4px; }
+    .btn-label { display: none; }
+
+    #toolbar-hint { display: none; }
+
+    #main { margin: 12px auto; padding: 0 8px 32px; }
+
+    .form-header { flex-direction: column; gap: 12px; padding: 20px 16px; }
+    .form-header img { height: 44px !important; }
+    .form-header h1 { font-size: 16px; }
+
+    .section-body { padding: 14px 14px; }
+    .section-header { padding: 12px 14px; }
+
+    .field-row { flex-direction: column; gap: 4px; margin-bottom: 14px; }
+    .field-label { width: 100%; max-width: 100%; min-width: 0; padding-top: 0; font-size: 13px; }
+    .field-input { width: 100%; }
+    .field-input[style*="max-width"] { max-width: 100% !important; }
+
+    input[type="text"], input[type="email"], input[type="tel"],
+    input[type="url"], input[type="number"], input[type="date"],
+    select, textarea {
+      font-size: 16px; /* verhindert Auto-Zoom auf iOS */
+      padding: 10px 12px;
+    }
+
+    .checkbox-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
+    .checkbox-item { padding: 8px 8px; font-size: 13px; }
+
+    .holiday-table { font-size: 12px; }
+    .holiday-table .date-label { display: none; }
+    .holiday-table td, .holiday-table th { padding: 4px 4px; }
+    .holiday-table input[type="text"] { font-size: 12px; }
+    .holiday-table select { font-size: 12px; }
+
+    .hint { font-size: 11px; }
+    .notice { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <div class="logo-area">
+    <img src="Logo_cutout.png" alt="Sichtwerk Agentur" style="height:32px;width:auto;filter:brightness(0) invert(1);">
+  </div>
+  <div id="progress-bar-wrap" title="Fortschritt"><div id="progress-bar"></div></div>
+  <span id="progress-label">0% ausgefüllt</span>
+  <span id="save-status">⏳ Noch nicht gespeichert</span>
+  <div class="toolbar-divider"></div>
+  <button class="btn btn-ghost" onclick="exportJSON()" title="Zwischenstand als Datei auf Ihrem Computer speichern – so können Sie später weitermachen">
+    ⬇ <span class="btn-label">Exportieren</span>
+  </button>
+  <button class="btn btn-ghost" onclick="openImport()" title="Einen zuvor exportierten Zwischenstand wieder laden und weiterbearbeiten">
+    ⬆ <span class="btn-label">Importieren</span>
+  </button>
+  <button class="btn btn-warn" onclick="clearAll()" title="Alle eingegebenen Daten löschen und von vorne beginnen">
+    ✕ <span class="btn-label">Zurücksetzen</span>
+  </button>
+  <button class="btn btn-primary" onclick="handlePrint()" title="Ausgefülltes Formular als PDF speichern – danach bitte an sichtwerkagentur@gmail.com senden">
+    🖨 <span class="btn-label">PDF exportieren</span>
+  </button>
+</div>
+
+<!-- TOOLBAR HINT -->
+<div id="toolbar-hint">
+  <div class="hint-item"><span class="hint-icon">⬇</span> <strong>Exportieren:</strong> Speichert Ihren Zwischenstand als Datei – so können Sie jederzeit weitermachen</div>
+  <div class="hint-item"><span class="hint-icon">⬆</span> <strong>Importieren:</strong> Lädt eine zuvor exportierte Datei wieder in das Formular</div>
+  <div class="hint-item"><span class="hint-icon">✕</span> <strong>Zurücksetzen:</strong> Löscht alle Eingaben und startet von vorne</div>
+  <div class="hint-item"><span class="hint-icon">🖨</span> <strong>PDF exportieren:</strong> Druckt das ausgefüllte Formular als PDF – bitte anschließend an <a href="mailto:sichtwerkagentur@gmail.com" style="color:var(--accent);text-decoration:none;font-weight:600">sichtwerkagentur@gmail.com</a> senden</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <div class="header-text">
+      <h1>Google Unternehmensprofil<br>SEO-Onboarding &amp; Analysefragebogen</h1>
+      <p style="margin-top:8px">Dieses Dokument dient als Grundlage für die professionelle Einrichtung, Optimierung und laufende Betreuung Ihres Google Unternehmensprofils mit dem Ziel maximaler lokaler Sichtbarkeit, mehr Anfragen und besserer Rankings.</p>
+      <span class="badge">Pflichtfelder sind mit * markiert</span>
+    </div>
+    <img src="Logo_cutout.png" alt="Sichtwerk Agentur" style="height:64px;width:auto;flex-shrink:0;opacity:0.9;">
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Abrechnungsinformationen</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Firmierung (Rechnungsname) <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="text" id="f1a" placeholder="z. B. Mustermann GmbH" oninput="handleInput(this)" autocomplete="organization">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Rechnungsadresse <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="text" id="f1b" placeholder="Straße, PLZ Ort" oninput="handleInput(this)" autocomplete="street-address">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">E-Mail für Rechnungen <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="email" id="f1c" placeholder="rechnung@firma.de" oninput="handleInput(this)" autocomplete="email">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Ansprechpartner (Name &amp; Funktion) <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="text" id="f1d" placeholder="Max Mustermann, Geschäftsführer" oninput="handleInput(this)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Basis-Informationen</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Unternehmensname (offiziell) <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="text" id="f2a" placeholder="Offizieller Name ohne Keywords" oninput="handleInput(this)">
+          <div class="hint">⚠ Bitte exakt so eintragen, wie das Unternehmen firmiert – keine Keywords ergänzen.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Hauptkategorie <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="text" id="f2b" placeholder="z. B. Elektriker, Zahnarzt, Steuerberater" oninput="handleInput(this)">
+          <div class="hint">Die Hauptkategorie hat den größten Einfluss auf die Sichtbarkeit bei Google.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Nebenkategorien</div></div>
+        <div class="field-input" style="min-width:0;width:100%">
+          <input type="text" id="f2c" placeholder="z. B. Notdienst, Wartung, Installation" oninput="handleInput(this)">
+          <div class="hint">Bis zu 9 Nebenkategorien möglich. Durch Komma trennen.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Eröffnungsdatum</div></div>
+        <div class="field-input">
+          <input type="date" id="f2d" oninput="handleInput(this)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Kontaktdaten &amp; Standort</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Primäre Telefonnummer <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="tel" id="f3a" placeholder="+49 123 456789" oninput="handleInput(this)" autocomplete="tel">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Weitere Telefonnummern</div></div>
+        <div class="field-input">
+          <textarea id="f3b" placeholder="Fax, Mobilnummer, Hotline – je eine pro Zeile" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Website / Landingpage <span class="req">*</span></div></div>
+        <div class="field-input">
+          <input type="url" id="f3c" placeholder="https://www.firma.de" oninput="handleInput(this)" autocomplete="url">
+          <div class="hint">Möglichst direkt zur relevantesten Unterseite verlinken (z. B. Kontakt- oder Leistungsseite).</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Standortadresse (falls sichtbar)</div></div>
+        <div class="field-input">
+          <input type="text" id="f3d" placeholder="Straße, PLZ, Ort" oninput="handleInput(this)">
+          <div class="hint">Leer lassen, wenn kein physischer Standort für Kunden sichtbar sein soll (reine Serviceanbieter).</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">e.</span><div class="label-inner">Servicegebiet / Einzugsgebiet</div></div>
+        <div class="field-input">
+          <textarea id="f3e" placeholder="z. B. München und Umgebung (50 km), Städte: Dachau, Fürstenfeldbruck, Landsberg" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Zeitmanagement &amp; Öffnungszeiten</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Reguläre Öffnungszeiten</div></div>
+        <div class="field-input">
+          <textarea id="f4a" placeholder="Mo–Fr: 08:00–18:00 Uhr&#10;Sa: 09:00–13:00 Uhr&#10;So: geschlossen" oninput="handleInput(this)" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="field-row" style="flex-direction:column;gap:8px">
+        <div class="field-label" style="max-width:100%;padding-top:0"><span class="letter">b.</span> Öffnungszeiten an gesetzlichen Feiertagen</div>
+        <div class="field-input" style="width:100%">
+          <table class="holiday-table">
+            <thead>
+              <tr>
+                <th>Feiertag</th>
+                <th>Datum 2025</th>
+                <th>Status</th>
+                <th>Öffnungszeiten (falls abweichend)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day-label">Neujahr</td>
+                <td class="date-label">01.01.</td>
+                <td><select id="hol_01" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_01_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Heilige Drei Könige</td>
+                <td class="date-label">06.01. <span style="color:#f59e0b;font-size:10px">(nur BY/BW/ST)</span></td>
+                <td><select id="hol_02" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_02_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Karfreitag</td>
+                <td class="date-label">18.04.2025</td>
+                <td><select id="hol_03" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_03_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Ostersonntag</td>
+                <td class="date-label">20.04.2025</td>
+                <td><select id="hol_04" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_04_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Ostermontag</td>
+                <td class="date-label">21.04.2025</td>
+                <td><select id="hol_05" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_05_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Tag der Arbeit</td>
+                <td class="date-label">01.05.</td>
+                <td><select id="hol_06" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_06_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Christi Himmelfahrt</td>
+                <td class="date-label">29.05.2025</td>
+                <td><select id="hol_07" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_07_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Pfingstsonntag</td>
+                <td class="date-label">08.06.2025</td>
+                <td><select id="hol_08" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_08_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Pfingstmontag</td>
+                <td class="date-label">09.06.2025</td>
+                <td><select id="hol_09" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_09_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Fronleichnam</td>
+                <td class="date-label">19.06.2025 <span style="color:#f59e0b;font-size:10px">(BY/BW/HE/NW/RP/SL)</span></td>
+                <td><select id="hol_10" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_10_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Mariä Himmelfahrt</td>
+                <td class="date-label">15.08. <span style="color:#f59e0b;font-size:10px">(nur BY/SL)</span></td>
+                <td><select id="hol_11" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_11_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Tag der Deutschen Einheit</td>
+                <td class="date-label">03.10.</td>
+                <td><select id="hol_12" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_12_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Reformationstag</td>
+                <td class="date-label">31.10. <span style="color:#f59e0b;font-size:10px">(BB/HB/HH/MV/NI/SN/ST/SH/TH)</span></td>
+                <td><select id="hol_13" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_13_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Allerheiligen</td>
+                <td class="date-label">01.11. <span style="color:#f59e0b;font-size:10px">(BY/BW/NW/RP/SL)</span></td>
+                <td><select id="hol_14" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_14_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Buß- und Bettag</td>
+                <td class="date-label">19.11.2025 <span style="color:#f59e0b;font-size:10px">(nur SN)</span></td>
+                <td><select id="hol_15" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_15_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Heiligabend</td>
+                <td class="date-label">24.12.</td>
+                <td><select id="hol_16" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_16_time" placeholder="z. B. 08:00–12:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">1. Weihnachtstag</td>
+                <td class="date-label">25.12.</td>
+                <td><select id="hol_17" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_17_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">2. Weihnachtstag</td>
+                <td class="date-label">26.12.</td>
+                <td><select id="hol_18" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_18_time" placeholder="z. B. 10:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+              <tr>
+                <td class="day-label">Silvester</td>
+                <td class="date-label">31.12.</td>
+                <td><select id="hol_19" onchange="handleHolidaySelect(this)"><option value="">–</option><option value="geschlossen">Geschlossen</option><option value="normal">Normale Zeiten</option><option value="abweichend">Abweichend</option></select></td>
+                <td><input type="text" id="hol_19_time" placeholder="z. B. 08:00–14:00 Uhr" oninput="handleInput(this)"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="holiday-note">⚠ Länderspezifische Feiertage (orange markiert) bitte nur ausfüllen, wenn für Ihren Standort relevant. Google aktualisiert die Feiertage jährlich automatisch – diese Angaben überschreiben die automatischen Werte.</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Weitere Services</div></div>
+        <div class="field-input">
+          <textarea id="f4c" placeholder="z. B. Abholung nach Vereinbarung, 24h-Notdienst, Lieferung Mo–Sa" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Zusätzliche Details &amp; Attribute</h2>
+    </div>
+    <div class="section-body">
+
+      <!-- 5a Serviceoptionen -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">a.</span> Serviceoptionen</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5a1" onchange="scheduleAutoSave()"><label for="c5a1">Online-Kostenvoranschläge möglich</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5a2" onchange="scheduleAutoSave()"><label for="c5a2">Service / Leistungen vor Ort</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5a3" onchange="scheduleAutoSave()"><label for="c5a3">Unterstützung in anderen Sprachen</label></div>
+        </div>
+        <div class="inline-with-field" style="margin-top:10px">
+          <label>Angebotene Sprachen:</label>
+          <input type="text" id="f5a_lang" placeholder="z. B. Englisch, Türkisch, Russisch" oninput="handleInput(this)" style="max-width:320px">
+        </div>
+      </div>
+
+      <!-- 5b Barrierefreiheit -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">b.</span> Barrierefreiheit</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5b1" onchange="scheduleAutoSave()"><label for="c5b1">Rollstuhlgerechter Eingang</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5b2" onchange="scheduleAutoSave()"><label for="c5b2">Rollstuhlgerechter Parkplatz</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5b3" onchange="scheduleAutoSave()"><label for="c5b3">Barrierefreies WC</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5b4" onchange="scheduleAutoSave()"><label for="c5b4">Nicht vorhanden</label></div>
+        </div>
+      </div>
+
+      <!-- 5c Ausstattung -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">c.</span> Ausstattung</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5c1" onchange="scheduleAutoSave()"><label for="c5c1">WLAN</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5c2" onchange="scheduleAutoSave()"><label for="c5c2">WC</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5c3" onchange="scheduleAutoSave()"><label for="c5c3">Kinderfreundlich</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5c4" onchange="scheduleAutoSave()"><label for="c5c4">Wartebereich</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5c5" onchange="scheduleAutoSave()"><label for="c5c5">Klimatisiert</label></div>
+        </div>
+      </div>
+
+      <!-- 5d Leistungen vor Ort -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">d.</span> Angebote / Leistungen vor Ort</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5d1" onchange="scheduleAutoSave()"><label for="c5d1">Beratung</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5d2" onchange="scheduleAutoSave()"><label for="c5d2">Reparatur vor Ort</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5d3" onchange="scheduleAutoSave()"><label for="c5d3">Lieferung</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5d4" onchange="scheduleAutoSave()"><label for="c5d4">Montage</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5d5" onchange="scheduleAutoSave()"><label for="c5d5">Servicevertrag</label></div>
+        </div>
+      </div>
+
+      <!-- 5e Zahlung -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">e.</span> Zahlungsmöglichkeiten</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e1" onchange="scheduleAutoSave()"><label for="c5e1">Bar</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e2" onchange="scheduleAutoSave()"><label for="c5e2">EC-Karte / Debitkarte</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e3" onchange="scheduleAutoSave()"><label for="c5e3">Kreditkarte</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e4" onchange="scheduleAutoSave()"><label for="c5e4">NFC / Mobile Payment</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e5" onchange="scheduleAutoSave()"><label for="c5e5">Rechnung</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5e6" onchange="scheduleAutoSave()"><label for="c5e6">PayPal / Online-Zahlung</label></div>
+        </div>
+      </div>
+
+      <!-- 5f Highlights -->
+      <div class="checkbox-section">
+        <div class="checkbox-section-label"><span class="letter">f.</span> Highlights &amp; Besonderheiten</div>
+        <div class="checkbox-grid">
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f1" onchange="scheduleAutoSave()"><label for="c5f1">Familienbetrieb</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f2" onchange="scheduleAutoSave()"><label for="c5f2">Nachhaltig / Regional</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f3" onchange="scheduleAutoSave()"><label for="c5f3">Inhabergeführt</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f4" onchange="scheduleAutoSave()"><label for="c5f4">Langjährige Erfahrung</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f5" onchange="scheduleAutoSave()"><label for="c5f5">Ausgezeichneter Service</label></div>
+          <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c5f6" onchange="scheduleAutoSave()"><label for="c5f6">Frauengeführt</label></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Leistungen, Produkte &amp; Umsatzschwerpunkte</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Angebotene Leistungen / Produkte</div></div>
+        <div class="field-input">
+          <textarea id="f6a" placeholder="Alle relevanten Leistungen und Produkte auflisten" oninput="handleInput(this)" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Top-3-Leistungen (nach Priorität)</div></div>
+        <div class="field-input">
+          <textarea id="f6b" placeholder="1. Wichtigste Leistung&#10;2. Zweitwichtigste Leistung&#10;3. Drittwichtigste Leistung" oninput="handleInput(this)" rows="3"></textarea>
+          <div class="hint">Bitte in Reihenfolge der Wichtigkeit angeben (Platz 1 = umsatzstärkste / strategisch wichtigste Leistung).</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Besonders profitable Leistungen</div></div>
+        <div class="field-input">
+          <textarea id="f6c" placeholder="Welche Leistungen bringen den höchsten Deckungsbeitrag?" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Spezialisierungen &amp; Nischen</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Fachliche Spezialisierungen / Nischen</div></div>
+        <div class="field-input">
+          <textarea id="f7a" placeholder="z. B. Spezialist für denkmalgeschützte Gebäude, Barrierefreiheit, Industrieanlagen …" oninput="handleInput(this)" rows="3"></textarea>
+          <div class="hint">Was unterscheidet Sie von Mitbewerbern? Besondere Kenntnisse, Zertifikate oder Zielgruppen?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Zielgruppe &amp; Wunschkunden</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Die 3 wichtigsten Kundentypen</div></div>
+        <div class="field-input">
+          <textarea id="f8a" placeholder="1. z. B. Privathaushalte mit Altbau&#10;2. z. B. Hausverwaltungen&#10;3. z. B. Gewerbliche Mieter" oninput="handleInput(this)" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Nicht gewünschte Kundengruppen</div></div>
+        <div class="field-input">
+          <textarea id="f8b" placeholder="z. B. Einzelaufträge unter 500 €, Anfragen außerhalb des Servicegebiets" oninput="handleInput(this)" rows="2"></textarea>
+          <div class="hint">Diese Information hilft dabei, das Profil so zu optimieren, dass unpassende Anfragen reduziert werden.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Kundenperspektive &amp; Suchverhalten</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Typische Suchbegriffe laut Erfahrung</div></div>
+        <div class="field-input">
+          <textarea id="f9a" placeholder="z. B. Elektriker München, Notdienst Elektro, Steckdose defekt" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Häufige Begriffe aus Kundenanfragen</div></div>
+        <div class="field-input">
+          <textarea id="f9b" placeholder="z. B. Wie sagt euch Kunden typischerweise, was sie brauchen?" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="notice">
+        ℹ️ <span>Im Nachgang erfolgt eine professionelle Keyword-Analyse durch die Sichtwerk Agentur auf Basis dieser Angaben.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Vertrauen, Erfahrung &amp; Autorität</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Gründungsjahr</div></div>
+        <div class="field-input">
+          <input type="number" id="f10a" placeholder="z. B. 1998" min="1800" max="2025" oninput="handleInput(this)">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Qualifikationen / Zertifikate</div></div>
+        <div class="field-input">
+          <textarea id="f10b" placeholder="z. B. Meisterbetrieb, ISO 9001, TÜV-zertifiziert, DEKRA-geprüft" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Mitgliedschaften / Auszeichnungen</div></div>
+        <div class="field-input">
+          <textarea id="f10c" placeholder="z. B. HWK-Mitglied, IHK, Auszeichnung des Jahres 2022" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Bewertungen &amp; Reputation</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Aktuelle Anzahl Bewertungen (ca.)</div></div>
+        <div class="field-input">
+          <input type="number" id="f11a" placeholder="z. B. 47" min="0" oninput="handleInput(this)">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Aktueller Bewertungsdurchschnitt</div></div>
+        <div class="field-input">
+          <input type="number" id="f11b_avg" placeholder="z. B. 4.6" min="1" max="5" step="0.1" oninput="handleInput(this)">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Bisheriger Umgang mit Bewertungen</div></div>
+        <div class="field-input">
+          <select id="f11c" onchange="handleInput(this)">
+            <option value="">– Bitte wählen –</option>
+            <option value="aktiv">Aktiv: Wir antworten auf alle Bewertungen</option>
+            <option value="teilweise">Teilweise: Wir antworten auf manche</option>
+            <option value="passiv">Passiv: Wir antworten kaum / gar nicht</option>
+            <option value="extern">Extern vergeben: Agentur / Dienstleister antwortet</option>
+          </select>
+          <div class="hint">Regelmäßiges Antworten auf Bewertungen ist ein wichtiger Rankingfaktor bei Google.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <h2>Medien &amp; Inhalte</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Vorhandene Medien</div></div>
+        <div class="field-input">
+          <div class="checkbox-grid" style="margin-bottom:10px">
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a1" onchange="scheduleAutoSave()"><label for="c12a1">Teamfotos</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a2" onchange="scheduleAutoSave()"><label for="c12a2">Innenaufnahmen</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a3" onchange="scheduleAutoSave()"><label for="c12a3">Außenaufnahmen</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a4" onchange="scheduleAutoSave()"><label for="c12a4">Arbeitsaufnahmen / Vorher-Nachher</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a5" onchange="scheduleAutoSave()"><label for="c12a5">Produkt- / Leistungsfotos</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a6" onchange="scheduleAutoSave()"><label for="c12a6">Videos vorhanden</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c12a7" onchange="scheduleAutoSave()"><label for="c12a7">Logo in hoher Auflösung</label></div>
+          </div>
+          <textarea id="f12a" placeholder="Weitere Anmerkungen zu vorhandenen Medien …" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="notice">
+        📸 <span>Professionelle Fotos und Videos können optional als Zusatzleistung gebucht werden.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 13 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">13</div>
+      <h2>Betreuung &amp; Ziele</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Ziel des Google-Unternehmensprofils <span class="req">*</span></div></div>
+        <div class="field-input">
+          <div class="checkbox-grid" style="margin-bottom:10px">
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a1" onchange="scheduleAutoSave()"><label for="c13a1">Mehr Anrufe</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a2" onchange="scheduleAutoSave()"><label for="c13a2">Mehr Online-Anfragen</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a3" onchange="scheduleAutoSave()"><label for="c13a3">Mehr Laufkundschaft</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a4" onchange="scheduleAutoSave()"><label for="c13a4">Bessere Sichtbarkeit / Rankings</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a5" onchange="scheduleAutoSave()"><label for="c13a5">Mehr Bewertungen</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c13a6" onchange="scheduleAutoSave()"><label for="c13a6">Markenbekanntheit steigern</label></div>
+          </div>
+          <textarea id="f13a" placeholder="Sonstige Ziele oder Anmerkungen …" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 14 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">14</div>
+      <h2>Google Business Profil – Zugangsstatus</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Profil bereits vorhanden? <span class="req">*</span></div></div>
+        <div class="field-input">
+          <select id="f14a" onchange="handleInput(this)">
+            <option value="">– Bitte wählen –</option>
+            <option value="ja_zugang">Ja, und wir haben Zugang</option>
+            <option value="ja_kein_zugang">Ja, aber kein Zugang (Inhaber unbekannt / verloren)</option>
+            <option value="nein">Nein, noch kein Profil vorhanden</option>
+            <option value="unsicher">Unsicher / nicht bekannt</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Profil verifiziert?</div></div>
+        <div class="field-input">
+          <select id="f14b" onchange="handleInput(this)">
+            <option value="">– Bitte wählen –</option>
+            <option value="ja">Ja, verifiziert</option>
+            <option value="nein">Nein / noch ausstehend</option>
+            <option value="unsicher">Nicht bekannt</option>
+          </select>
+          <div class="hint">Ein nicht verifiziertes Profil kann nicht vollständig bearbeitet werden. Die Verifizierung erfolgt i. d. R. per Postkarte, Video oder Telefon.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Google-Konto (E-Mail) des Profil-Inhabers</div></div>
+        <div class="field-input">
+          <input type="email" id="f14c" placeholder="inhaber@gmail.com" oninput="handleInput(this)">
+          <div class="hint">Wird benötigt, um Agenturzugang zu vergeben. Bleibt vertraulich.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Google Analytics / Search Console vorhanden?</div></div>
+        <div class="field-input">
+          <select id="f14d" onchange="handleInput(this)">
+            <option value="">– Bitte wählen –</option>
+            <option value="beides">Ja, beides vorhanden und verknüpft</option>
+            <option value="analytics">Nur Google Analytics</option>
+            <option value="search_console">Nur Search Console</option>
+            <option value="nein">Nein, nichts vorhanden</option>
+            <option value="unsicher">Nicht bekannt</option>
+          </select>
+          <div class="hint">Analytics-Daten helfen dabei, den Erfolg der Profiloptimierung messbar zu machen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 15 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">15</div>
+      <h2>Online-Präsenz &amp; Social Media</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Unternehmensbeschreibung</div></div>
+        <div class="field-input">
+          <textarea id="f15a" placeholder="Kurze Beschreibung des Unternehmens (max. 750 Zeichen bei Google)" oninput="handleInput(this); updateCharCount('f15a','f15a_count',750)" rows="4"></textarea>
+          <div class="hint"><span id="f15a_count">0</span> / 750 Zeichen – Google zeigt die Beschreibung im Profil und bei Maps an.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Vorhandene Social-Media-Profile</div></div>
+        <div class="field-input">
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:6px 10px;align-items:center">
+            <label style="font-size:12px;color:var(--muted)">Facebook:</label>
+            <input type="url" id="f15b_fb" placeholder="https://facebook.com/..." oninput="handleInput(this)">
+            <label style="font-size:12px;color:var(--muted)">Instagram:</label>
+            <input type="url" id="f15b_ig" placeholder="https://instagram.com/..." oninput="handleInput(this)">
+            <label style="font-size:12px;color:var(--muted)">LinkedIn:</label>
+            <input type="url" id="f15b_li" placeholder="https://linkedin.com/company/..." oninput="handleInput(this)">
+            <label style="font-size:12px;color:var(--muted)">YouTube:</label>
+            <input type="url" id="f15b_yt" placeholder="https://youtube.com/@..." oninput="handleInput(this)">
+            <label style="font-size:12px;color:var(--muted)">Sonstige:</label>
+            <input type="text" id="f15b_other" placeholder="z. B. TikTok, Xing, Pinterest" oninput="handleInput(this)">
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Weitere Branchenverzeichnisse</div></div>
+        <div class="field-input">
+          <div class="checkbox-grid" style="margin-bottom:8px">
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c1" onchange="scheduleAutoSave()"><label for="c15c1">Das Örtliche</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c2" onchange="scheduleAutoSave()"><label for="c15c2">Gelbe Seiten</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c3" onchange="scheduleAutoSave()"><label for="c15c3">Yelp</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c4" onchange="scheduleAutoSave()"><label for="c15c4">Trustpilot</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c5" onchange="scheduleAutoSave()"><label for="c15c5">ProvenExpert</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c15c6" onchange="scheduleAutoSave()"><label for="c15c6">Branchenspezifisch</label></div>
+          </div>
+          <input type="text" id="f15c_other" placeholder="Sonstige Verzeichnisse / Portale …" oninput="handleInput(this)">
+          <div class="hint">NAP-Konsistenz (Name, Adresse, Telefon) über alle Verzeichnisse hinweg ist ein wichtiger lokaler Rankingfaktor.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 16 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">16</div>
+      <h2>Wettbewerb &amp; Marktumfeld</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-label"><span class="letter">a.</span><div class="label-inner">Bekannte Hauptwettbewerber</div></div>
+        <div class="field-input">
+          <textarea id="f16a" placeholder="1. Firmenname (ggf. Website)&#10;2. Firmenname&#10;3. Firmenname" oninput="handleInput(this)" rows="3"></textarea>
+          <div class="hint">Wer taucht bei Google auf, wenn Ihre Kunden nach Ihren Leistungen suchen? Diese Infos fließen in die Wettbewerbsanalyse ein.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">b.</span><div class="label-inner">Ihr Alleinstellungsmerkmal gegenüber diesen Wettbewerbern</div></div>
+        <div class="field-input">
+          <textarea id="f16b" placeholder="Warum sollte ein Kunde Sie wählen und nicht den Mitbewerber?" oninput="handleInput(this)" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">c.</span><div class="label-inner">Bisherige Marketingmaßnahmen</div></div>
+        <div class="field-input">
+          <div class="checkbox-grid" style="margin-bottom:8px">
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c1" onchange="scheduleAutoSave()"><label for="c16c1">Google Ads (SEA)</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c2" onchange="scheduleAutoSave()"><label for="c16c2">Social Media Ads</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c3" onchange="scheduleAutoSave()"><label for="c16c3">SEO (organisch)</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c4" onchange="scheduleAutoSave()"><label for="c16c4">Newsletter / E-Mail</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c5" onchange="scheduleAutoSave()"><label for="c16c5">Print / Flyer</label></div>
+            <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" id="c16c6" onchange="scheduleAutoSave()"><label for="c16c6">Keine bisherigen Maßnahmen</label></div>
+          </div>
+          <input type="text" id="f16c_other" placeholder="Sonstige Maßnahmen …" oninput="handleInput(this)">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-label"><span class="letter">d.</span><div class="label-inner">Monatliches Budget für Online-Marketing (optional)</div></div>
+        <div class="field-input">
+          <select id="f16d" onchange="handleInput(this)">
+            <option value="">– Keine Angabe –</option>
+            <option value="unter_200">Unter 200 €</option>
+            <option value="200_500">200 – 500 €</option>
+            <option value="500_1000">500 – 1.000 €</option>
+            <option value="1000_2500">1.000 – 2.500 €</option>
+            <option value="ueber_2500">Über 2.500 €</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- IMPORT MODAL -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal">
+    <h3>📥 Stand importieren</h3>
+    <p style="font-size:12px;color:#6b7280;margin-bottom:10px">Füge hier den zuvor exportierten JSON-Code ein und klicke auf „Importieren".</p>
+    <textarea id="importTextarea" placeholder='{"f1a":"Mustermann GmbH", ...}'></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeImport()" style="color:#374151;background:#f3f4f6;border:1px solid #d1d5db">Abbrechen</button>
+      <button class="btn btn-success" onclick="doImport()">✓ Importieren</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ===== ALL FIELD IDs =====
+const textFieldIds = [
+  'f1a','f1b','f1c','f1d',
+  'f2a','f2b','f2c','f2d',
+  'f3a','f3b','f3c','f3d','f3e',
+  'f4a','f4c',
+  // Feiertage: Status-Selects + Zeitfelder
+  'hol_01','hol_01_time','hol_02','hol_02_time','hol_03','hol_03_time',
+  'hol_04','hol_04_time','hol_05','hol_05_time','hol_06','hol_06_time',
+  'hol_07','hol_07_time','hol_08','hol_08_time','hol_09','hol_09_time',
+  'hol_10','hol_10_time','hol_11','hol_11_time','hol_12','hol_12_time',
+  'hol_13','hol_13_time','hol_14','hol_14_time','hol_15','hol_15_time',
+  'hol_16','hol_16_time','hol_17','hol_17_time','hol_18','hol_18_time',
+  'hol_19','hol_19_time',
+  'f5a_lang',
+  'f6a','f6b','f6c',
+  'f7a',
+  'f8a','f8b',
+  'f9a','f9b',
+  'f10a','f10b','f10c',
+  'f11a','f11b_avg','f11c',
+  'f12a',
+  'f13a',
+  'f14a','f14b','f14c','f14d',
+  'f15a','f15b_fb','f15b_ig','f15b_li','f15b_yt','f15b_other','f15c_other',
+  'f16a','f16b','f16c_other','f16d'
+];
+
+const checkboxIds = [
+  'c5a1','c5a2','c5a3',
+  'c5b1','c5b2','c5b3','c5b4',
+  'c5c1','c5c2','c5c3','c5c4','c5c5',
+  'c5d1','c5d2','c5d3','c5d4','c5d5',
+  'c5e1','c5e2','c5e3','c5e4','c5e5','c5e6',
+  'c5f1','c5f2','c5f3','c5f4','c5f5','c5f6',
+  'c12a1','c12a2','c12a3','c12a4','c12a5','c12a6','c12a7',
+  'c13a1','c13a2','c13a3','c13a4','c13a5','c13a6',
+  'c15c1','c15c2','c15c3','c15c4','c15c5','c15c6',
+  'c16c1','c16c2','c16c3','c16c4','c16c5','c16c6'
+];
+
+// ===== AUTO SAVE =====
+let autoSaveTimer = null;
+
+function scheduleAutoSave() {
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(autoSave, 1200);
+}
+
+function autoSave() {
+  const data = collectData();
+  try {
+    localStorage.setItem('sichtwerk_umfrage_v1', JSON.stringify(data));
+    const now = new Date();
+    document.getElementById('save-status').textContent =
+      '✓ Gespeichert ' + now.toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    document.getElementById('save-status').textContent = '⚠ Speichern fehlgeschlagen';
+  }
+  updateProgress();
+}
+
+// ===== HANDLE INPUT =====
+function handleInput(el) {
+  if (el.value && el.value.trim() !== '' && el.value !== '– Bitte wählen –') {
+    el.classList.add('filled');
+  } else {
+    el.classList.remove('filled');
+  }
+  scheduleAutoSave();
+}
+
+// ===== TOGGLE CHECKBOX =====
+function toggleCheck(item) {
+  const cb = item.querySelector('input[type="checkbox"]');
+  if (event.target === cb) return; // already handled by native change
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+  scheduleAutoSave();
+}
+
+// ===== HOLIDAY SELECT =====
+function handleHolidaySelect(el) {
+  handleInput(el);
+  // Show/hide time field based on selection
+  const timeId = el.id + '_time';
+  const timeEl = document.getElementById(timeId);
+  if (timeEl) {
+    timeEl.style.opacity = el.value === 'abweichend' ? '1' : '0.35';
+    timeEl.style.pointerEvents = el.value === 'abweichend' ? 'auto' : 'none';
+    if (el.value === 'geschlossen' || el.value === 'normal') {
+      timeEl.value = '';
+      timeEl.classList.remove('filled');
+    }
+  }
+}
+
+// ===== CHAR COUNT =====
+function updateCharCount(fieldId, countId, max) {
+  const el = document.getElementById(fieldId);
+  const countEl = document.getElementById(countId);
+  if (!el || !countEl) return;
+  const len = el.value.length;
+  countEl.textContent = len;
+  countEl.style.color = len > max ? 'var(--required)' : len > max * 0.85 ? 'var(--warn)' : 'var(--muted)';
+}
+
+// ===== COLLECT DATA =====
+function collectData() {
+  const data = {};
+  textFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value;
+  });
+  checkboxIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.checked;
+  });
+  return data;
+}
+
+// ===== APPLY DATA =====
+function applyData(data) {
+  textFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && data[id] !== undefined) {
+      el.value = data[id];
+      handleInput(el);
+    }
+  });
+  checkboxIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && data[id] !== undefined) {
+      el.checked = data[id];
+      const item = el.closest('.checkbox-item');
+      if (item) item.classList.toggle('checked', el.checked);
+    }
+  });
+}
+
+// ===== PROGRESS =====
+function updateProgress() {
+  let filled = 0, total = 0;
+  textFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    total++;
+    if (el.value && el.value.trim() !== '' && el.value !== '– Bitte wählen –') filled++;
+  });
+  // count checkbox groups as one each
+  const groups = ['5a','5b','5c','5d','5e','5f','12a','13a','15c','16c'];
+  groups.forEach(g => {
+    total++;
+    const prefix = 'c' + g;
+    const anyChecked = checkboxIds.filter(id => id.startsWith(prefix)).some(id => {
+      const el = document.getElementById(id);
+      return el && el.checked;
+    });
+    if (anyChecked) filled++;
+  });
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '% ausgefüllt';
+}
+
+// ===== EXPORT JSON =====
+function exportJSON() {
+  const data = collectData();
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const firm = document.getElementById('f1a').value || 'Unternehmen';
+  const date = new Date().toISOString().slice(0,10);
+  a.download = `Umfrage_${firm.replace(/[^a-zA-Z0-9]/g,'_')}_${date}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✓ Exportiert als JSON-Datei');
+}
+
+// ===== IMPORT =====
+function openImport() {
+  document.getElementById('importTextarea').value = '';
+  document.getElementById('importModal').classList.add('open');
+}
+function closeImport() {
+  document.getElementById('importModal').classList.remove('open');
+}
+function doImport() {
+  try {
+    const data = JSON.parse(document.getElementById('importTextarea').value);
+    applyData(data);
+    closeImport();
+    autoSave();
+    showToast('✓ Daten erfolgreich importiert');
+  } catch(e) {
+    alert('⚠ Ungültiges JSON-Format. Bitte prüfe den eingefügten Text.');
+  }
+}
+
+// ===== CLEAR ALL =====
+function clearAll() {
+  if (!confirm('Wirklich alle Felder zurücksetzen? Nicht gespeicherte Änderungen gehen verloren.')) return;
+  textFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.classList.remove('filled'); }
+  });
+  checkboxIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.checked = false;
+      const item = el.closest('.checkbox-item');
+      if (item) item.classList.remove('checked');
+    }
+  });
+  localStorage.removeItem('sichtwerk_umfrage_v1');
+  document.getElementById('save-status').textContent = '✕ Zurückgesetzt';
+  updateProgress();
+  showToast('Alle Felder wurden zurückgesetzt');
+}
+
+// ===== PDF / PRINT =====
+function handlePrint() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isIOS || isSafari) {
+    // Safari/iOS: window.print() funktioniert, aber User braucht Anleitung
+    const ok = confirm(
+      'PDF erstellen:\n\n' +
+      '1. Tippe unten auf das Teilen-Symbol ↑\n' +
+      '2. Wähle „In Dateien sichern" oder „Drucken"\n' +
+      '3. Sende die PDF an sichtwerkagentur@gmail.com\n\n' +
+      'Jetzt die Druckvorschau öffnen?'
+    );
+    if (ok) window.print();
+  } else {
+    window.print();
+  }
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ===== INIT ON LOAD =====
+window.addEventListener('DOMContentLoaded', () => {
+  // Init checkbox visuals
+  checkboxIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('change', () => {
+        const item = el.closest('.checkbox-item');
+        if (item) item.classList.toggle('checked', el.checked);
+      });
+    }
+  });
+
+  // Init holiday time fields (dimmed by default)
+  for (let i = 1; i <= 19; i++) {
+    const pad = i < 10 ? '0' + i : '' + i;
+    const timeEl = document.getElementById('hol_' + pad + '_time');
+    if (timeEl) { timeEl.style.opacity = '0.35'; timeEl.style.pointerEvents = 'none'; }
+  }
+
+  // Load from localStorage
+  try {
+    const saved = localStorage.getItem('sichtwerk_umfrage_v1');
+    if (saved) {
+      const data = JSON.parse(saved);
+      applyData(data);
+      // Re-apply holiday states after load
+      for (let i = 1; i <= 19; i++) {
+        const pad = i < 10 ? '0' + i : '' + i;
+        const sel = document.getElementById('hol_' + pad);
+        if (sel && sel.value) handleHolidaySelect(sel);
+      }
+      document.getElementById('save-status').textContent = '✓ Letzter Stand geladen';
+      showToast('Letzter gespeicherter Stand wurde wiederhergestellt');
+    }
+  } catch(e) {}
+
+  updateProgress();
+  // Init char count
+  const descEl = document.getElementById('f15a');
+  if (descEl) updateCharCount('f15a', 'f15a_count', 750);
+
+  // Close modal on overlay click
+  document.getElementById('importModal').addEventListener('click', function(e) {
+    if (e.target === this) closeImport();
+  });
+});
+</script>
+</body>
+</html>
+                                                                                                                             
